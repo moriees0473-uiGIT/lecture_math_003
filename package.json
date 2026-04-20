@@ -7,18 +7,10 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "dev:main": "slidev slides.md", 
-    "dev:math03": "slidev slides/math03.md", 
-    "build:main": "slidev build slides.md --out dist/main --base /main/",
-    "build:math03": "slidev build slides/math03.md --out dist/math03 --base /math03/",
-    "clean:redirects": "node -e \"const fs=require('fs');['dist/_redirects','dist/main/_redirects','dist/math03/_redirects','slides/dist'].forEach(p=>{if(fs.existsSync(p))fs.rmSync(p,{recursive:true,force:true})})\"",
-    "verify:dist": "node -e \"const fs=require('fs'); const required=['dist/main/index.html','dist/math03/index.html']; const missing=required.filter(p=>!fs.existsSync(p)); if(missing.length){console.error('Missing build outputs: '+missing.join(', ')); process.exit(1)} console.log('Verified outputs: '+required.join(', '))\"",
-    "build:all": "npm run build:main && npm run build:math03 && npm run clean:redirects",
-    "build": "npm run build:all",
-    "build:render": "npm install --no-save @oxc-parser/binding-linux-x64-gnu@0.124.0 && npm run build:all && npm run verify:dist",
-    "serve": "npm run build:all && npx serve dist -p 3030",
-    "dev": "slidev slides.md --port 3030 --open",
-    "export": "slidev export slides.md"
+    "build": "slidev build",
+    "build:render": "npm install --no-save @oxc-parser/binding-linux-x64-gnu@0.124.0 && slidev build",
+    "dev": "slidev --port 3030 --open",
+    "export": "slidev export"
   },
   "dependencies": {
     "@slidev/cli": "^52.14.2",
@@ -36,3 +28,4 @@
     "playwright-chromium": "^1.59.1"
   }
 }
+

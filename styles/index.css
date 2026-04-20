@@ -1,0 +1,94 @@
+/* style.css 等 */
+
+/* Slidev外枠の背景を黒に固定（ローカル/Render共通） */
+html,
+body,
+#app,
+.slidev-presentation,
+#slideshow,
+.slidev-slides,
+.nav-controls-wrapper {
+  background-color: #000 !important;
+}
+
+:root {
+  --app-bg-start: #f8f4ed;
+  --app-bg-middle: #f1e8dc;
+  --app-bg-end: #e8dac7;
+  --app-accent: #8c6f4e;
+  --app-font-size-title: 2.0rem;
+  --app-font-size-subtitle: 1.6rem;
+  --app-font-size-body: 1.4rem;
+  --app-title-color: #5b4630;
+  --app-text-main: #3f3326;
+  --app-text-sub: #6f5c45;
+  --app-radius: 24px;
+  --app-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.page-bg {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+    145deg,
+    var(--app-bg-start)  0%,
+    var(--app-bg-middle) 45%,
+    var(--app-bg-end)    100%
+  );
+}
+
+.slcp-body {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-top: 1.2rem;
+}
+
+.slcp-panel {
+  flex: 1;
+}
+
+.slcp-divider {
+  width: 2px;
+  align-self: stretch;
+  background: rgba(91, 70, 48, 0.25);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* v-clickで挿入されるラッパーによる中央寄せ崩れを防ぐ */
+.slidev-vclick-target {
+  display: block !important;
+  width: 100%;
+  text-align: left;
+}
+
+.slidev-vclick-target > .jinan-step-container--body {
+  width: 100%;
+  text-align: left;
+}
+
+.slidev-page.supplement-page h1,
+.slidev-layout.supplement-page h1,
+.supplement-page h1 {
+  color: #2f3a4a !important;
+  text-shadow: none;
+}
+
+.slidev-page.supplement-page,
+.slidev-layout.supplement-page {
+  background: #ececec !important;
+}
+
+.supplement-page .page-bg {
+  background: #ececec !important;
+}
+
+.supplement-page .supplement-back-button {
+  color: #2f3a4a !important;
+  border: 1px solid #a9b3c1;
+  background: #f8fafc;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-weight: 700;
+}

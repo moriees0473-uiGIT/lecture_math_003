@@ -1,0 +1,3 @@
+---
+src: ./slides/slides.md
+---

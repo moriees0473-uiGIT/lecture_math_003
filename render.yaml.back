@@ -1,0 +1,12 @@
+services:
+  - type: static          # ここを static にします
+    name: lecture-develop-001
+    buildCommand: npm install && npm run build:render
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /main/*
+        destination: /main/index.html
+      - type: rewrite
+        source: /math03/*
+        destination: /math03/index.html

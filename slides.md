@@ -12,15 +12,14 @@ duration: 35min
 canvasWidth: 1100
 ---
 
-<InlineSmallTitle title="第2回 システム開発の流れ（全体）" suffix="マネジメント系"
-  :suffix-scale="0.58" />
+<InlineSmallTitle title="二次方程式② （因数分解）" suffix="第3回 基礎数学Ⅱ"  :suffix-scale="0.58" />
 
 <CustomTitle
   subtitle='本日のテーマ'
   :points="[
-    { title: '1. ソフトウェア ライフ サイクル プロセス', desc: '(**[red]SLCP[/red]** :Software Life Cycle Process)' },
-    { title: '2. IPパスポート過去問題(令和3年 問46)' },
-    { title: '3. {総括|そうかつ}' }
+    { title: '1. 二次方程式① おさらい' },
+    { title: '2. 因数分解' },
+    { title: '3. 小テスト' }
   ]"
 />
 
@@ -37,8 +36,8 @@ import { computed } from 'vue'
 
 const slcpSteps = [
   {
-    id: 1, title: '1.企画', color: '#B5651D',
-    left: '情報システム全体の[orange]{構想|こうそう}や計画[/orange]を{策定|さくてい}するプロセスです。',
+    id: 1, title: '1.x^2の解', color: '#B5651D',
+    left: '次のx^2の解をどれか。',
     right_sections: [
       {
         rights_title: '＜システム化構想（利用者）＞',
@@ -54,8 +53,7 @@ const slcpSteps = [
           '・管理体制や開発スケジュール,{概算|がいさん}コスト,[orange]{費用対効果|ひようたいこうか}[/orange]([hl]ROI[/hl] : Return on Investment)などを検討する。'
         ]
       }
-    ],
-    image: '/images/2_process01_1.png'
+    ]
   },
   {
     id: 2, title: '2.要件定義', color: '#C19A6B', textColor: '#513820',
@@ -79,8 +77,7 @@ const slcpSteps = [
           'システムに必要な[orange]目に見えない性能[/orange]→応答時間,稼働時間,セキュリティなどを明確にする。'
         ]
       }
-    ],
-    image: '/images/2_process02_1.png'
+    ]
   },
   {
     id: 3, title: '3.開発', color: '#D2B48C', textColor: '#302316',
@@ -97,8 +94,7 @@ const slcpSteps = [
           '5)ｿﾌﾄｳｪｱ構築：ﾌﾟﾛｸﾞﾗﾑなどの作成'
         ]
       }
-    ],    
-    image: '/images/2_process03_1.png'
+    ]
   },
   {
     id: 4, title: '4.運用', color: '#A0845C',
@@ -114,8 +110,7 @@ const slcpSteps = [
           '4)ﾊﾟｯﾁ適用：OSやソフトウェアの脆弱性を修正するため、最新の更新ﾌﾟﾛｸﾞﾗﾑを適用。'
         ],
       }
-    ],
-    image: '/images/2_process04_1.png'
+    ]
   },
   {
     id: 5, title: '5.保守', color: '#7a6245',
@@ -131,8 +126,7 @@ const slcpSteps = [
           '4)予防保守',
         ] 
       }
-    ],
-    image: '/images/2_process05_1.png'
+    ]
   }
 ]
 
@@ -183,23 +177,17 @@ const getRightSections = (step) => {
     </button>
   </template>
 
-  <JinanStep kind="title" title="ソフトウェア ライフ サイクル プロセス" />
-  <JinanStep kind="title" title="** [hl][red]SLCP[/red][/hl] : [en]Software Life Cycle Process[/en]**" />
+  <JinanStep kind="title" title="二次方程式①のおさらい" />
+  <JinanStep class="math-line" kind="body" title="[math]x^2 + 3x + 2 = 0[/math]" />
+  <JinanStep class="math-line" kind="body" title="[math]x = (-b ± sqrt(b^2 - 4ac)) / 2a[/math]" />
 
-  <ProcessFlow
-    :current-index="currentStep"
-    :items="slcpSteps"
-    :step-width="194"
-    :step-height="43"
-    :head-width="26"
-    style="margin-top: 1rem; margin-bottom: 2rem;"
-  />
+  <JinanStep class="math-line" kind="body" mathSize="small" title="[math]x^2 + 3x + 2 = 0[/math]" />
+  <JinanStep class="math-line" kind="body" mathSize="small" title="[math]x    = (-b ± sqrt(b^2 - 4ac)) / 2a[/math]" />
 
   <div class="slcp-body" style="margin-top: 0.2rem;">
     <div class="slcp-panel">
-      <JinanStep kind="subtitle" :title="`${slcpSteps[currentStep].title}プロセス`" />
+      <JinanStep kind="subtitle" :title="`${slcpSteps[currentStep].title}`" />
       <JinanStep kind="body" :title="slcpSteps[currentStep].left" />
-      <img :src="slcpSteps[currentStep].image" class="w-full mt-4" />
     </div>
     <div class="slcp-divider" />
     <div class="slcp-panel" style="--app-font-size-subtitle: 1.25rem; --app-font-size-body: 1.25rem;">
@@ -244,6 +232,10 @@ const getRightSections = (step) => {
 
 .slcp-supplement-link:active {
   transform: translateY(0);
+}
+
+.math-line {
+  margin: 1.15rem 0;
 }
 </style>
 

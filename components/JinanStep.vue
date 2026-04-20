@@ -6,10 +6,12 @@ const props = withDefaults(defineProps<{
   kind?: 'title' | 'subtitle' | 'body' // 文字サイズの種類
   highlight?: boolean // 全文を背景ハイライトする
   speechText?: string // 読み上げ専用テキスト
+  mathSize?: 'normal' | 'small' // 数式の文字サイズ
 }>(), {
   kind: 'subtitle',
   highlight: false,
-  speechText: ''
+  speechText: '',
+  mathSize: 'normal'
 })
 
 const displayText = computed(() => {
@@ -72,6 +74,38 @@ const speakInline = async (text: string, lang: 'ja-JP' | 'en-US') => {
   window.speechSynthesis.speak(utterance)
 }
 
+const renderMathContent = (expression: string) => {
+  const placeholders: string[] = []
+  const makePlaceholder = (index: number) => `\u0000${index}\u0000`
+
+  let html = expression
+    .replace(/sqrt\(([^()]+)\)/g, (_, radicand: string) => {
+      const index = placeholders.push(
+        `<span class="step-math-root"><span class="step-math-root-sign">√</span><span class="step-math-root-body">${renderMathContent(radicand)}</span></span>`
+      ) - 1
+
+      return makePlaceholder(index)
+    })
+    .replace(/([A-Za-z])\^(\d+)/g, (_, variable: string, power: string) => {
+      const index = placeholders.push(
+        `<span class="step-math-inline"><span class="step-math-var">${variable}</span><sup class="step-math-sup">${power}</sup></span>`
+      ) - 1
+
+      return makePlaceholder(index)
+    })
+
+  html = html
+    .replace(/([A-Za-z])/g, '<span class="step-math-var">$1</span>')
+    .replace(/\u0000(\d+)\u0000/g, (_, index: string) => placeholders[Number(index)])
+
+  return html
+}
+
+const renderMathExpression = (expression: string, small = false) => {
+  const cls = small ? 'step-math step-math--small' : 'step-math'
+  return `<span class="${cls}">${renderMathContent(expression)}</span>`
+}
+
 // 文字列処理関数（色・太字・ルビ・インライン読み上げに対応）
 const format = (text: string) => {
   if (!text) return ''
@@ -84,6 +118,7 @@ const format = (text: string) => {
 
   return escaped
     .replace(/\\n|\r\n|\r|\n/g, '<br/>')
+    .replace(/\[math\](.+?)\[\/math\]/g, (_, expression: string) => renderMathExpression(expression, props.mathSize === 'small'))
     .replace(/\[red\](.+?)\[\/red\]/g, '<span class="step-red">$1</span>')
     .replace(/\[green\](.+?)\[\/green\]/g, '<span class="step-green">$1</span>')
     .replace(/\[(?:orange|orenge)\](.+?)\[\/(?:orange|orenge)\]/g, '<span class="step-orange">$1</span>')
@@ -91,6 +126,8 @@ const format = (text: string) => {
     .replace(/\[en\](.+?)\[\/en\]/g, '<button type="button" class="step-inline-speech step-inline-speech--en" data-lang="en-US" data-text="$1"><strong>$1</strong></button>')
     .replace(/\[jp\](.+?)\[\/jp\]/g, '<button type="button" class="step-inline-speech step-inline-speech--jp" data-lang="ja-JP" data-text="$1"><strong>$1</strong><span class="step-speech-icon" aria-hidden="true">🔉</span></button>')
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    // Convert power notation like x^2 into a math-like superscript rendering.
+    .replace(/([A-Za-z])\^(\d+)/g, '<span class="step-math-var">$1</span><sup class="step-math-sup">$2</sup>')
     .replace(/\{([^|]+)\|([^}]+)\}/g, '<ruby>$1<rt>$2</rt></ruby>')
 }
 
@@ -201,6 +238,72 @@ const handleInlineClick = (e: MouseEvent) => {
   border-radius: 0.3em;
   padding: 0.02em 0.3em;
   color: #5b4630;
+}
+
+:deep(.step-math) {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.06em;
+  font-family: 'Cambria Math', 'Times New Roman', serif;
+  font-size: 3em;
+  font-weight: 600;
+  line-height: 1.08;
+  white-space: pre;
+  color: #433222;
+}
+
+:deep(.step-math-inline) {
+  display: inline-flex;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+:deep(.step-math-var) {
+  font-family: 'Cambria Math', 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+:deep(.step-math-sup) {
+  font-family: 'Cambria Math', 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.5em;
+  line-height: 1;
+  margin-left: 0.02em;
+  position: relative;
+  top: -0.08em;
+}
+
+:deep(.step-math-root) {
+  display: inline-flex;
+  align-items: flex-start;
+  margin-right: 0.05em;
+}
+
+:deep(.step-math-root-sign) {
+  font-size: 0.95em;
+  line-height: 0.98;
+  margin-top: 0.2em;
+}
+
+:deep(.step-math-root-body) {
+  position: relative;
+  display: inline-block;
+  margin-left: -0.14em;
+  padding: 0.2em 0.12em 0 0.12em;
+}
+
+:deep(.step-math-root-body::before) {
+  content: '';
+  position: absolute;
+  left: 0.08em;
+  right: 0;
+  top: calc(0.02em + 1px);
+  border-top: 0.08em solid currentColor;
+}
+
+:deep(.step-math--small) {
+  font-size: 2.2em;
 }
 
 /* ルビの調整 */

@@ -34,7 +34,7 @@ canvasWidth: 1100
   variant="point-bg"
 >
   <JinanStep kind="title" title="1. 前回の復習 ： 二次方程式①（意味と基本）" />
-  <JinanStep kind="subtitle" title="Q1．次の方程式の[red]解[/red]をすべて表しているものを\n　 　[red]1つ選びなさい[/red]。" />
+  <JinanStep kind="subtitle" title="Q1．次の方程式の[red]解[/red]を[red]すべて表している[/red]ものを\n　 　[red]1つ選びなさい[/red]。" />
 
   <JinanStep kind="title" title="[math]x^2 = 25[/math]\n" style="margin-left: 10em;" />
   <JinanStep kind="subtitle" title="[gray]ア[/gray]　[math]0[/math]　　　[gray]イ[/gray]　[math]5[/math]　　　[gray]ウ[/gray]　[math]-5[/math]　　　[gray]工[/gray]　[math]±5[/math]\n\n" style="margin-left: 5em;"/>  
@@ -55,13 +55,13 @@ canvasWidth: 1100
 <JinanStepFrame
   variant="point-bg"
 >
-  <JinanStep kind="subtitle" title="Q2．次の方程式の[red]解[/red]をすべて表しているものを\n　 　[red]1つ選びなさい[/red]。\n" />
+  <JinanStep kind="subtitle" title="Q2．次の方程式の[red]解[/red]を[red]すべて表している[/red]ものを\n　 　[red]1つ選びなさい[/red]。\n" />
 
   <JinanStep kind="title" title="[math]x^2 = 0[/math]\n" style="margin-left: 10em;" />
 
   <JinanStep kind="subtitle" title="[gray]ア[/gray]　[math]0[/math]　　　[gray]イ[/gray]　[math]0^0[/math]　　　[gray]ウ[/gray]　[math]0^2[/math]　　　[gray]工[/gray]　[math]±0[/math]\n\n" style="margin-left: 5em;"/>
 
-  <JinanStep v-click kind="body" title="【正解】ア\n注）イの[red][math]0^0[/math][/red]は、数学的には[red]{不定|ふてい}[/red]であり、出題されるのは{稀|まれ}です。\n\nウとエは、以下のようにまとめる必要があるため、不正解です。\n　　　[math]0^2=0[/math]であり、[math]±0=0[/math]であるため、解は[red]０[/red]の１つです。" />
+  <JinanStep v-click kind="body" title="【正解】ア\n注）イの[red][math]0^0[/math][/red]は、数学的には[red]{不定|ふてい}[/red]であり、出題されるのは{稀|まれ}です。\n\nウとエは、以下のように[green]まとめる必要[/green]があるため、不正解です。\n　　　[math]0^2=0[/math]であり、[math]±0=0[/math]であるため、解は[red]０[/red]の１つです。" />
  
 </JinanStepFrame>
 </div>
@@ -79,7 +79,7 @@ canvasWidth: 1100
   <!--
   <JinanStep kind="title" title="1. 前回の復習 ： 二次方程式①（意味と基本）" />
   -->
-  <JinanStep kind="subtitle" title="Q3．次の方程式の[red]解[/red]をすべて表しているものを\n　 　[red]1つ選びなさい[/red]。\n" />
+  <JinanStep kind="subtitle" title="Q3．次の方程式の[red]解[/red]を[red]すべて表している[/red]ものを\n　 　[red]1つ選びなさい[/red]。\n" />
 
   <JinanStep kind="title" title="[math]x^2 = -1[/math]\n" style="margin-left: 10em;"  />
 
@@ -107,7 +107,7 @@ canvasWidth: 1100
 
   <JinanStep v-click kind="body" title="[green]Ｂパターン（解が１つ）[/green]\n　[math]x^2 = 0 = ±sqrt(0) = ±sqrt(0^2) 　{∴|ゆえに}X = 0[/math]" style="margin-left: 3em;"/>
 
-<JinanStep v-click kind="body" title="[green]Ｃパターン（解なし）[/green]\n　[math]x^2 = -1 = ±sqrt(-1)[/math]　　 {∴|ゆえに} 解なし\n　 注）数学的には、{虚数|きょすう} [math]i^2 = -1[/math] として表せます。\n　　　 虚数とは、実数ではない「想像上の数」です。" style="margin-left: 3em;"/>
+<JinanStep v-click kind="body" title="[green]Ｃパターン（解なし）[/green]\n　[math]x^2 = -1 = ±sqrt(-1)[/math]　　 {∴|ゆえに} 解なし\n　 注）数学的には、[green]{虚数|きょすう} [math]i^2 = -1[/math][/green] として表せます。\n　　　 虚数とは、実数ではない「想像上の数」です。" style="margin-left: 3em;"/>
   
 </JinanStepFrame>
 </div>

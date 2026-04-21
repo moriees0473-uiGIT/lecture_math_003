@@ -6,7 +6,7 @@ const props = withDefaults(defineProps<{
   kind?: 'title' | 'subtitle' | 'body' // 文字サイズの種類
   highlight?: boolean // 全文を背景ハイライトする
   speechText?: string // 読み上げ専用テキスト
-  mathSize?: 'normal' | 'small' // 数式の文字サイズ
+  mathSize?: 'small' | 'normal' | 'large' | 'largel' | 'laerge' // 数式の文字サイズ
 }>(), {
   kind: 'subtitle',
   highlight: false,
@@ -86,11 +86,11 @@ const renderMathContent = (expression: string) => {
 
       return makePlaceholder(index)
     })
-    .replace(/([A-Za-z])\^(\d+)/g, (_, variable: string, power: string) => {
+    // 括弧全体の累乗 (a-b)^2 や通常の x^2 に対応
+    .replace(/(\([^()]+\)|[A-Za-z0-9])\^(\d+)/g, (_, base: string, power: string) => {
       const index = placeholders.push(
-        `<span class="step-math-inline"><span class="step-math-var">${variable}</span><sup class="step-math-sup">${power}</sup></span>`
+        `<span class=\"step-math-inline\"><span class=\"step-math-var\">${base}</span><sup class=\"step-math-sup\">${power}</sup></span>`
       ) - 1
-
       return makePlaceholder(index)
     })
 
@@ -101,8 +101,16 @@ const renderMathContent = (expression: string) => {
   return html
 }
 
-const renderMathExpression = (expression: string, small = false) => {
-  const cls = small ? 'step-math step-math--small' : 'step-math'
+const normalizeMathSize = (mathSize: 'small' | 'normal' | 'large' | 'largel' | 'laerge') => {
+  if (mathSize === 'largel' || mathSize === 'laerge') return 'large'
+  return mathSize
+}
+
+const renderMathExpression = (expression: string, mathSize: 'small' | 'normal' | 'large' | 'largel' | 'laerge') => {
+  const normalizedSize = normalizeMathSize(mathSize)
+  const cls = normalizedSize === 'normal'
+    ? 'step-math'
+    : `step-math step-math--${normalizedSize}`
   return `<span class="${cls}">${renderMathContent(expression)}</span>`
 }
 
@@ -118,16 +126,17 @@ const format = (text: string) => {
 
   return escaped
     .replace(/\\n|\r\n|\r|\n/g, '<br/>')
-    .replace(/\[math\](.+?)\[\/math\]/g, (_, expression: string) => renderMathExpression(expression, props.mathSize === 'small'))
+    .replace(/\[math\](.+?)\[\/math\]/g, (_, expression: string) => renderMathExpression(expression, 'normal'))
     .replace(/\[red\](.+?)\[\/red\]/g, '<span class="step-red">$1</span>')
     .replace(/\[green\](.+?)\[\/green\]/g, '<span class="step-green">$1</span>')
+    .replace(/\[gray\](.+?)\[\/gray\]/g, '<span class="step-gray">$1</span>')
     .replace(/\[(?:orange|orenge)\](.+?)\[\/(?:orange|orenge)\]/g, '<span class="step-orange">$1</span>')
     .replace(/\[hl\](.+?)\[\/hl\]/g, '<span class="step-hl">$1</span>')
     .replace(/\[en\](.+?)\[\/en\]/g, '<button type="button" class="step-inline-speech step-inline-speech--en" data-lang="en-US" data-text="$1"><strong>$1</strong></button>')
     .replace(/\[jp\](.+?)\[\/jp\]/g, '<button type="button" class="step-inline-speech step-inline-speech--jp" data-lang="ja-JP" data-text="$1"><strong>$1</strong><span class="step-speech-icon" aria-hidden="true">🔉</span></button>')
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     // Convert power notation like x^2 into a math-like superscript rendering.
-    .replace(/([A-Za-z])\^(\d+)/g, '<span class="step-math-var">$1</span><sup class="step-math-sup">$2</sup>')
+    .replace(/([A-Za-z0-9])\^(\d+)/g, '<span class="step-math-var">$1</span><sup class="step-math-sup">$2</sup>')
     .replace(/\{([^|]+)\|([^}]+)\}/g, '<ruby>$1<rt>$2</rt></ruby>')
 }
 
@@ -177,6 +186,8 @@ const handleInlineClick = (e: MouseEvent) => {
 .jinan-step-container--body {
   width: 100%;
   text-align: left;
+  position: relative;
+  z-index: 1;
 }
 
 .jinan-step-row {
@@ -191,24 +202,24 @@ const handleInlineClick = (e: MouseEvent) => {
 }
 
 .step-title--title {
-  font-size: var(--app-font-size-title, 2.5rem);
+  font-size: max(var(--app-font-size-title, 2.5rem), 2.5rem);
   font-weight: 900;
   color: var(--app-title-color, #5b4630);
+  margin-left: -1.5em;
 }
 
 .step-title--subtitle {
-  font-size: var(--app-font-size-subtitle, 2rem);
+  font-size: max(var(--app-font-size-subtitle, 2.1rem), 2.1rem);
   font-weight: 900;
   color: var(--app-text-main, #3f3326);
   margin-top: 0.5em;
 }
 
 .step-title--body {
-  font-size: var(--app-font-size-body, 1.6rem);
+  font-size: max(var(--app-font-size-body, 1.9rem), 1.9rem);
   font-weight: 600;
   line-height: 1.45;
   color: var(--app-text-sub, #6f5c45);
-  margin-left: 1em;
   display: block;
   width: 100%;
   text-align: left;
@@ -224,6 +235,10 @@ const handleInlineClick = (e: MouseEvent) => {
 
 :deep(.step-green) {
   color: #2f855a;
+}
+
+:deep(.step-gray) {
+  color: #8a97a8;
 }
 
 :deep(.step-orange) {
@@ -245,11 +260,11 @@ const handleInlineClick = (e: MouseEvent) => {
   align-items: flex-end;
   gap: 0.06em;
   font-family: 'Cambria Math', 'Times New Roman', serif;
-  font-size: 3em;
+  font-size: 1.3em;
   font-weight: 600;
   line-height: 1.08;
   white-space: pre;
-  color: #433222;
+  color: currentColor;
 }
 
 :deep(.step-math-inline) {
@@ -300,10 +315,6 @@ const handleInlineClick = (e: MouseEvent) => {
   right: 0;
   top: calc(0.02em + 1px);
   border-top: 0.08em solid currentColor;
-}
-
-:deep(.step-math--small) {
-  font-size: 2.2em;
 }
 
 /* ルビの調整 */

@@ -12,232 +12,133 @@ duration: 35min
 canvasWidth: 1100
 ---
 
-<InlineSmallTitle title="二次方程式② （因数分解）" suffix="第3回 基礎数学Ⅱ"  :suffix-scale="0.58" />
+<InlineSmallTitle title="二次方程式② ： 因数分解 " suffix="第3回 基礎数学Ⅱ"  :suffix-scale="0.58" />
 
 <CustomTitle
   subtitle='本日のテーマ'
   :points="[
-    { title: '1. 二次方程式① おさらい' },
-    { title: '2. 因数分解' },
+    { title: '1. 前回の復習　 ： 二次方程式①（意味と基本）' },
+    { title: '2. 二次方程式②　： 因数分解（いんすう ぶんかい）' },
     { title: '3. 小テスト' }
   ]"
 />
 
 ---
-routeAlias: process-page
 theme: default
 layout: none
-class: text-center
 canvasWidth: 1100
 ---
 
-<script setup>
-import { computed } from 'vue'
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
+  <JinanStep kind="title" title="1. 前回の復習 ： 二次方程式①（意味と基本）" />
+  <JinanStep kind="subtitle" title="Q1．次の方程式の[red]解[/red]をすべて表しているものを\n　 　[red]1つ選びなさい[/red]。" />
 
-const slcpSteps = [
-  {
-    id: 1, title: '1.x^2の解', color: '#B5651D',
-    left: '次のx^2の解をどれか。',
-    right_sections: [
-      {
-        rights_title: '＜システム化構想（利用者）＞',
-        rights: [
-          '・経営上のニーズや課題を確認する。',
-          '・業務と情報システムの[orange]将来像を明確[/orange]にした上で,[orange]全体{最適化|さいてきか}[/orange]を図る。'
-        ]
-      },
-      {
-        rights_title: '＜システム化計画（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
-        rights: [
-          '・システム化の基本方針を策定する。',
-          '・管理体制や開発スケジュール,{概算|がいさん}コスト,[orange]{費用対効果|ひようたいこうか}[/orange]([hl]ROI[/hl] : Return on Investment)などを検討する。'
-        ]
-      }
-    ]
-  },
-  {
-    id: 2, title: '2.要件定義', color: '#C19A6B', textColor: '#513820',
-    left: '情報システムの[orange]機能や性能[/orange]を明確にするプロセスです。',
-    right_sections: [
-      {
-        rights_title: '＜業務要件定義（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
-        rights: [
-          '日々の業務に必要な要件→業務手順,関係する[orange]組織の責任や権限[/orange]などを明確にする。'
-        ]
-      },
-      {
-        rights_title: '＜機能要件定義（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
-        rights: [
-          'システムに必要な機能→必要なデータ項目,処理内容,ユーザインタ要件フェースなどを明確にする。'
-        ]
-      },
-      {
-        rights_title: '＜非機能要件定義（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
-        rights: [
-          'システムに必要な[orange]目に見えない性能[/orange]→応答時間,稼働時間,セキュリティなどを明確にする。'
-        ]
-      }
-    ]
-  },
-  {
-    id: 3, title: '3.開発', color: '#D2B48C', textColor: '#302316',
-    left: '開発者が利用者の要件を取り入れながら,実際にシステムを[orange]開発[/orange]するプロセスです。',
-    right_sections: [
-      {
-        rights_title: '＜開発工程順序（ﾍﾞﾝﾀﾞｰと利用者）＞',
-        rights: [
-          '[hl][orange]ソフトウェアの品質特性[/orange]（機能、使用、信頼、効率、保守、移植）[/hl]に基づき下記工程を進める',
-          '1)ｼｽﾃﾑ要件定義：ｼｽﾃﾑ要件定義書の作成',
-          '2)ｿﾌﾄｳｪｱ要件定義：ｿﾌﾄｳｪｱ要件定義書の作成',
-          '3)ｼｽﾃﾑ設計：ｼｽﾃﾑ設計書の作成',
-          '4)ｿﾌﾄｳｪｱ設計：ｿﾌﾄｳｪｱ設計書の作成',
-          '5)ｿﾌﾄｳｪｱ構築：ﾌﾟﾛｸﾞﾗﾑなどの作成'
-        ]
-      }
-    ]
-  },
-  {
-    id: 4, title: '4.運用', color: '#A0845C',
-    left: '利用者の検収後,日々の業務を通して新システムを稼働させ[orange]利用[/orange]するプロセスです。',
-    right_sections: [
-      { 
-        rights_title: '＜運用の主な作業（利用者、ﾍﾞﾝﾀﾞｰ）＞', 
-        rights: [
-          'システムが正常に動いているか常にチェックし、トラブルを未然に防ぐ活動が中心です。',
-          '1)サービスデスク（ヘルプデスク）',
-          '2)システム監視：サーバー、ネットワーク、CPU使用率やﾒﾓﾘ空き容量などを確認。',
-          '3)ﾊﾞｯｸｱｯﾌﾟ：定期的なデータ複製・保存。',
-          '4)ﾊﾟｯﾁ適用：OSやソフトウェアの脆弱性を修正するため、最新の更新ﾌﾟﾛｸﾞﾗﾑを適用。'
-        ],
-      }
-    ]
-  },
-  {
-    id: 5, title: '5.保守', color: '#7a6245',
-    left: '稼働中のシステムを修正・改善し、常に[orange]最適な状態に保つ[/orange]プロセスです',
-    right_sections: [
-      { 
-        rights_title: '＜保守の主な作業（利用者、ﾍﾞﾝﾀﾞｰ）＞', 
-        rights: [
-          '不具合への対応だけでなく、環境の変化に合わせたメンテナンスも含みます。',
-          '1)障害保守（訂正保守も含む）',
-          '2)適応保守',
-          '3)改良保守（完全化保守）',
-          '4)予防保守',
-        ] 
-      }
-    ]
-  }
-]
+  <JinanStep kind="title" title="[math]x^2 = 25[/math]\n" style="margin-left: 10em;" />
+  <JinanStep kind="subtitle" title="[gray]ア[/gray]　[math]0[/math]　　　[gray]イ[/gray]　[math]5[/math]　　　[gray]ウ[/gray]　[math]-5[/math]　　　[gray]工[/gray]　[math]±5[/math]\n\n" style="margin-left: 5em;"/>  
 
-const currentStep = computed(() => Math.min($slidev.nav.clicks, slcpSteps.length - 1))
-const currentSupplement = computed(() => {
-  const step = slcpSteps[currentStep.value]
-  if (!step?.id) return null
+  <JinanStep v-click kind="body" title="【正解】エ\n　　[math]±5[/math]は、２つの解を含んでいるので正解です。" />
 
-  return {
-    pageName: `process${step.id}-hosoku-page`,
-    buttonLabel: `${step.title}の補足へ`
-  }
-})
 
-const getRightSections = (step) => {
-  if (Array.isArray(step.right_sections) && step.right_sections.length > 0) {
-    return step.right_sections
-  }
+</JinanStepFrame>
+</div>
 
-  const titles = Array.isArray(step.rights_titles) && step.rights_titles.length > 0
-    ? step.rights_titles
-    : (step.rights_title ? [step.rights_title] : [])
-
-  const rights = Array.isArray(step.rights) && step.rights.length > 0
-    ? step.rights
-    : (step.right ? [step.right] : [])
-
-  if (titles.length <= 1) {
-    return [{ rights_title: titles[0] || '', rights }]
-  }
-
-  return titles.map((title, index) => ({
-    rights_title: title,
-    rights: rights[index] ? [rights[index]] : []
-  }))
-}
-</script>
+---
+theme: default
+layout: none
+canvasWidth: 1100
+---
 
 <div class="page-bg">
-<JinanStepFrame variant="point-bg">
-  <template #header-actions>
-    <button
-      v-if="currentSupplement"
-      class="slcp-supplement-link"
-      @click="$slidev.nav.go(currentSupplement.pageName, currentStep)"
-    >
-      {{ currentSupplement.buttonLabel }}
-    </button>
-  </template>
+<JinanStepFrame
+  variant="point-bg"
+>
+  <JinanStep kind="subtitle" title="Q2．次の方程式の[red]解[/red]をすべて表しているものを\n　 　[red]1つ選びなさい[/red]。\n" />
 
-  <JinanStep kind="title" title="二次方程式①のおさらい" />
-  <JinanStep class="math-line" kind="body" title="[math]x^2 + 3x + 2 = 0[/math]" />
-  <JinanStep class="math-line" kind="body" title="[math]x = (-b ± sqrt(b^2 - 4ac)) / 2a[/math]" />
+  <JinanStep kind="title" title="[math]x^2 = 0[/math]\n" style="margin-left: 10em;" />
 
-  <JinanStep class="math-line" kind="body" mathSize="small" title="[math]x^2 + 3x + 2 = 0[/math]" />
-  <JinanStep class="math-line" kind="body" mathSize="small" title="[math]x    = (-b ± sqrt(b^2 - 4ac)) / 2a[/math]" />
+  <JinanStep kind="subtitle" title="[gray]ア[/gray]　[math]0[/math]　　　[gray]イ[/gray]　[math]0^0[/math]　　　[gray]ウ[/gray]　[math]0^2[/math]　　　[gray]工[/gray]　[math]±0[/math]\n\n" style="margin-left: 5em;"/>
 
-  <div class="slcp-body" style="margin-top: 0.2rem;">
-    <div class="slcp-panel">
-      <JinanStep kind="subtitle" :title="`${slcpSteps[currentStep].title}`" />
-      <JinanStep kind="body" :title="slcpSteps[currentStep].left" />
-    </div>
-    <div class="slcp-divider" />
-    <div class="slcp-panel" style="--app-font-size-subtitle: 1.25rem; --app-font-size-body: 1.25rem;">
-      <template
-        v-for="(section, sectionIndex) in getRightSections(slcpSteps[currentStep])"
-        :key="'right-section-' + slcpSteps[currentStep].id + '-' + sectionIndex"
-      >
-        <JinanStep v-if="section.rights_title" kind="subtitle" :title="section.rights_title" />
-        <JinanStep
-          v-for="(rightText, rightIndex) in section.rights"
-          :key="'right-' + slcpSteps[currentStep].id + '-' + sectionIndex + '-' + rightIndex"
-          kind="body"
-          :title="rightText"
-        />
-      </template>
-    </div>
+  <JinanStep v-click kind="body" title="【正解】ア\n注）イの[red][math]0^0[/math][/red]は、数学的には[red]{不定|ふてい}[/red]であり、出題されるのは{稀|まれ}です。\n\nウとエは、以下のようにまとめる必要があるため、不正解です。\n　　　[math]0^2=0[/math]であり、[math]±0=0[/math]であるため、解は[red]０[/red]の１つです。" />
+ 
+</JinanStepFrame>
+</div>
+
+---
+theme: default
+layout: none
+canvasWidth: 1100
+---
+
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
+  <!--
+  <JinanStep kind="title" title="1. 前回の復習 ： 二次方程式①（意味と基本）" />
+  -->
+  <JinanStep kind="subtitle" title="Q3．次の方程式の[red]解[/red]をすべて表しているものを\n　 　[red]1つ選びなさい[/red]。\n" />
+
+  <JinanStep kind="title" title="[math]x^2 = -1[/math]\n" style="margin-left: 10em;"  />
+
+  <JinanStep kind="subtitle" title="[gray]ア[/gray]　[math]-1[/math]　　[gray]イ[/gray]　[math]1[/math] [gray]　　ウ[/gray]　[math]-1^2[/math]　　[gray]工[/gray]　[math]解なし[/math]\n\n" style="margin-left: 5em;"/>
+
+  <JinanStep v-click kind="body" title="【正解】エ　\n　　注）正解のエは、{虚数|きょすう}:[math]i^2[/math]の選択肢がないため、\n　　　　実数として「解なし」が正解となります。" />
+ 
+</JinanStepFrame>
+</div>
+
+---
+theme: default
+layout: none
+canvasWidth: 1100
+---
+
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
+  <JinanStep kind="title" title="1. 前回の復習 ： 二次方程式①（意味と基本）" />
+  <JinanStep kind="subtitle" title="◆ まとめ（[math]x^2 のx[/math] の解は、以下の３パターン）\n" />
+
+  <JinanStep v-click kind="body" title="[green]Ａパターン（解が２つ）[/green]\n　[math]x^2 = 9 = ±sqrt(9) = ±sqrt(3^2)　 {∴|ゆえに} x = ±3[/math]" style="margin-left: 3em;"/>
+
+  <JinanStep v-click kind="body" title="[green]Ｂパターン（解が１つ）[/green]\n　[math]x^2 = 0 = ±sqrt(0) = ±sqrt(0^2) 　{∴|ゆえに}X = 0[/math]" style="margin-left: 3em;"/>
+
+<JinanStep v-click kind="body" title="[green]Ｃパターン（解なし）[/green]\n　[math]x^2 = -1 = ±sqrt(-1)[/math]　　 {∴|ゆえに} 解なし\n　 注）数学的には、{虚数|きょすう} [math]i^2 = -1[/math] として表せます。\n　　　 虚数とは、実数ではない「想像上の数」です。" style="margin-left: 3em;"/>
+  
+</JinanStepFrame>
+</div>
+
+---
+theme: default
+layout: none
+canvasWidth: 1100
+---
+
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
+  <JinanStep kind="title" title="2. 因数分解" />
+  <JinanStep kind="body" title="１）{展開|てんかい} ⇄ {因数分解|いんすう ぶんかい}（{公式|こうしき}）\n" />
+
+  <div style="display: flex; justify-content: flex-start; align-items: flex-start; height: 20.5vh;margin-top: -10px;">
+    <img src="/images/Factorization_01.png" alt="因数分解と展開" style="height: 80%; width: 80%; object-fit: contain; display: block; margin-left: 40px; " />
+  </div>
+
+  <div v-click style="display: flex; justify-content: flex-start; align-items: flex-start; height: 25vh; margin-top: -22px;">
+    <img src="/images/Factorization_02.png" alt="因数分解と展開" style="height: 80%; width: 80%; object-fit: contain; display: block; margin-left: 40px;" />
+  </div>
+
+  <div v-click style="display: flex; justify-content: flex-start; align-items: flex-start; height: 23.5vh; margin-top: -27px;">
+    <img src="/images/Factorization_03.png" alt="因数分解と展開" style="height: 80%; width: 80%; object-fit: contain; display: block; margin-left: 40px;" />
   </div>
 
 </JinanStepFrame>
 </div>
-<span v-click="4"></span>
-
-<style>
-.slcp-supplement-link {
-  appearance: none;
-  border: 1px solid rgba(91, 70, 48, 0.22);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--app-title-color, #5b4630);
-  padding: 0.55rem 1rem;
-  font-size: 0.95rem;
-  font-weight: 800;
-  box-shadow: 0 10px 24px rgba(91, 70, 48, 0.12);
-  backdrop-filter: blur(6px);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
-}
-
-.slcp-supplement-link:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 28px rgba(91, 70, 48, 0.18);
-}
-
-.slcp-supplement-link:active {
-  transform: translateY(0);
-}
-
-.math-line {
-  margin: 1.15rem 0;
-}
-</style>
 
 ---
 theme: default
@@ -249,42 +150,16 @@ canvasWidth: 1100
 <JinanStepFrame
   variant="point-bg"
 >
-  <JinanStep kind="title" title="IPパスポート過去問題(令和3年 問46)" />
+  <JinanStep kind="body" title="２）基本の{公式展開|こうしき てんかい} \n" />
 
-  <JinanStep kind="subtitle" title="システム要件定義で明確にするもののうち,性能に関する要件はどれか。" />
+  <JinanStep kind="body" title="① {共通因数|きょうつう いんすう}でくくる \n" />
+  <JinanStep kind="body" title="[math]ax + bx = (a + b)x[/math]\n" style="margin-left: 5em;" />
 
-  <JinanStep kind="body" title="ア 業務要件を実現するシステムの機能\n" />
-  <JinanStep kind="body" title="イ システムの稼働率\n" />
-  <JinanStep kind="body" title="ウ 照会機能の応答時間\n" />
-  <JinanStep kind="body" title="工 障害の復旧時間\n" />
+  <JinanStep kind="body" title="② たすき{掛|か}け{型|がた}\n" />
+  <JinanStep kind="body" title="[math]x^2 + (a + b)x +ab = (x + a)(x + b)[/math]\n" style="margin-left: 5em;" />
 
-  <JinanStep v-click kind="body" title="【正解】ウ\n" />
-  <JinanStep v-click kind="body" title="【根拠】ア：業務要件で定義された機能は、システム要件の機能ではないため" />
-  <JinanStep v-click kind="body" title="【根拠】イ：稼働率は非機能要件で定義され、システム可用性の要件であるため" />
-  <JinanStep v-click kind="body" title="【根拠】ウ：正解" />
-  <JinanStep v-click kind="body" title="【根拠】エ：障碍時の復旧時間は機能要件で定義され、システム可用性または信頼性であるため" />
-  
-</JinanStepFrame>
-</div>
-
----
-theme: default
-layout: none
-canvasWidth: 1100
----
-
-<div class="page-bg">
-<JinanStepFrame
-  variant="point-bg"
->
-  <JinanStep kind="title" title="SLCP講義の総括（ITマネジメントと業界の未来）" />
-
-  <JinanStep kind="subtitle" title="1. なぜ「プロセス分け」が必要なのか？\n" />
-
-  <JinanStep v-click kind="body" title="ITパスポートの「ストラテジ系」「マネジメント系」で学んだ通り、\nシステム開発を企画・要件定義・開発・運用と分けるのには明確な理由があります。" />
-  <JinanStep v-click kind="body" title="**[green]リスクの早期発見：[/green]**\n 一気に作ると最後でミスが発覚した際の手戻りが巨大になります。フェーズごとに「承認」を挟むことで、ズレを最小限に抑えます。" />
-  <JinanStep v-click kind="body" title="**[green]専門性の活用： [/green]**\n企画のプロ、設計のプロ、運用のプロがそれぞれのフェーズで責任を持つことで、品質を高めます。" />
-  <JinanStep v-click kind="body" title="**[green]進捗の見える化：[/green]** \n「今、全体のどこにいるか」を明確にし、不透明なIT開発をコントロール可能にするためです。" />
+  <JinanStep kind="body" title="③ {平方|へいほう}の{差|さ}\n" />
+  <JinanStep kind="body" title="[math]a^2 - b^2 = (a - b)^2[/math]\n" style="margin-left: 5em;" />
 
 </JinanStepFrame>
 </div>
@@ -299,16 +174,64 @@ canvasWidth: 1100
 <JinanStepFrame
   variant="point-bg"
 >
+  <JinanStep kind="body" title="④ {完全平方|かんぜん へいほう}（2{乗|じょう}の{形|かた}) \n" />
+  <JinanStep kind="body" title="[math]a^2 + 2ab + b^2 = (a + b)^2[/math]\n" style="margin-left: 5em;" />
 
-  <JinanStep kind="subtitle" title="2. 「納期遅延」がもたらす恐ろしい連鎖" />
-  
-  <JinanStep v-click kind="body" title="[jp]試験でも「プロジェクトマネジメント」の重要性が説かれますが、納期が遅れることは単なる「遅刻」では済みません。[/jp]" />
-  
-  <JinanStep v-click kind="body" title="[jp]機会損失： 本来そのシステムで得るはずだった利益がゼロになります（例：キャンペーンに間に合わない）。[/jp]" />
-  
-  <JinanStep kind="body" title="[jp]コストの膨張： 開発メンバーの延べ人数（人月）が増え、プロジェクトが赤字化します。[/jp]" />
+  <JinanStep kind="body" title="⑤ 2次式の{一般形|いっぱんがた}（{発展|はってん}）\n" />
+  <JinanStep kind="body" title="[math]ax^2 + bx +c = (x - α)(x - β)[/math]\n" style="margin-left: 5em;" />
+  <JinanStep kind="body" title="注）[math] α, βは解である[/math]\n" style="margin-left: 5em;" />
 
-  <JinanStep v-click kind="body" title="[jp]信頼の失墜： IT業界は「信用」で成り立っています。納期遅延は企業としてのブランド価値を著しく下げ、次の契約（保守や次期開発）を失う原因になります。[/jp]" />
+  <JinanStep kind="body" title="３）０の{法則|ほうそく} \n" />
+  <JinanStep kind="body" title="[math](x - α)(x - β) = 0 {∴|ゆえに} X = α, β[/math]\n" style="margin-left: 5em;" />
+</JinanStepFrame>
+</div>
+
+---
+theme: default
+layout: none
+canvasWidth: 1100
+---
+
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
+  <JinanStep kind="title" title="3. 小テスト" />
+  <JinanStep kind="subtitle" title="次の[math]x^2 のx[/math] の解を答えなさい。\n" />
+
+  <JinanStep kind="body" title="Q1. [math]x^2 + 3x = 0[/math]" style="margin-left: 3em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math]x(X + 3) = 0 {∴|ゆえに} X = 0, -3[/math]"" style="margin-left: 6em;"/>
+
+  <JinanStep kind="body" title="Q2. [math]x^2 - 5x = 0[/math]" style="margin-left: 3em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math]x(X - 5) = 0 {∴|ゆえに} X = 0, 5[/math]"" style="margin-left: 6em;"/>
+
+  <JinanStep kind="body" title="Q3. [math]x^2 + 4x = 0[/math]" style="margin-left: 3em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math]x(X + 4) = 0 {∴|ゆえに} X = 0, -4[/math]"" style="margin-left: 6em;"/>
+  
+</JinanStepFrame>
+</div>
+
+---
+theme: default
+layout: none
+canvasWidth: 1100
+---
+
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
+  <JinanStep kind="body" title="Q4. [math]x^2 - 9 = 0[/math]" style="margin-left: 3em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math](x + 3)(X - 3) = 0 {∴|ゆえに} X = ±3[/math]"" style="margin-left: 6em;"/>
+
+  <JinanStep kind="body" title="Q5. [math]x^2 - 1 = 0[/math]" style="margin-left: 3em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math](x + 1)(X - 1) = 0 {∴|ゆえに} x = ±1[/math]"" style="margin-left: 6em;"/>
+
+  <JinanStep kind="body" title="Q6. [math]x^2 + 6x = 0[/math]" style="margin-left: 3em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math] x(X + 6) = 0 {∴|ゆえに} X = 0, -6[/math]"" style="margin-left: 6em;"/>
+
+  <JinanStep kind="body" title="Q7. [math]x^2 - 4x = 0[/math]" style="margin-left: 3em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math] x(X - 4) = 0 {∴|ゆえに} X = 0, 4[/math]"" style="margin-left: 6em;"/>
 
 </JinanStepFrame>
 </div>
@@ -323,33 +246,15 @@ canvasWidth: 1100
 <JinanStepFrame
   variant="point-bg"
 >
+  <JinanStep kind="body" title="Q8. [math]x(x + 2) = 0[/math]" style="margin-left: 3em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math] {∴|ゆえに} X = 0, -2[/math]"" style="margin-left: 6em;"/>
+
+  <JinanStep kind="body" title="Q9. [math](x -3)(x + 1) = 0[/math]" style="margin-left: 3em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math] {∴|ゆえに} x = 3, -1[/math]"" style="margin-left: 6em;"/>
+
+  <JinanStep kind="body" title="Q10.因数分解で解く理由は？" style="margin-left: 3em;"/>
+  <JinanStep v-click kind="body" title="【正解】 0の法則を使うため\n　　　（掛けて 0 になるなら、どれかひとつは絶対に 0）" style="margin-left: 6em;"/>
   
-  <JinanStep kind="subtitle" title="3. IT業界の現状と今後の動向" />
-
-  <JinanStep kind="body" title="[jp]これから関わるIT業界は、今まさに大きな転換期にあります。[/jp]" />
-  <JinanStep v-click kind="body" title="[jp]「作る」から「使いこなす」へ：\nゼロからプログラミングする時代から、SaaS（既存サービス）やローコード・ノーコード、そして生成AIを組み合わせて迅速に価値を作る時代へ移行しています。[/jp]" />
-  <JinanStep v-click kind="body" title="[jp]DX（デジタルトランスフォーメーション）の加速：\nITは単なる事務効率化のツールではなく、ビジネスモデルそのものを変える武器になりました。ITパスポートで学ぶ「経営学」と「IT技術」の掛け合わせこそが、今の現場で最も求められている視点です。[/jp]" />
-
-  <JinanStep v-click kind="body" title="[jp]セキュリティとガバナンス：\n便利になる反面、サイバー攻撃のリスクは増大しています。技術者だけでなく、全てのビジネスパーソンに「正しく守る知識」が必須となっています。[/jp]" />
-
-</JinanStepFrame>
-</div>
-
----
-theme: default
-layout: none
-canvasWidth: 1100
----
-
-<div class="page-bg">
-<JinanStepFrame
-  variant="point-bg"
->
-  <JinanStep kind="subtitle" title="4. 最後に：ITパスポートという「共通言語」" />
-
-  <JinanStep v-click kind="body" title="[jp]この講義で学んだ用語や概念は、IT業界における**「共通言語」**です。[/jp]" />
-  <JinanStep v-click kind="body" title="[jp]エンジニア、営業、経営者が同じ言葉で会話できて初めて、プロジェクトは成功します。試験合格をゴールにするのではなく、この知識を「現場で対話するための武器」として使いこなしていってください。[/jp]" />
-
 </JinanStepFrame>
 </div>
 
@@ -358,66 +263,11 @@ routeAlias: process1-hosoku-page
 class: supplement-page
 ---
 
-# 補足（企画）
+# 補足
 
 <button class="supplement-back-button" @click="$slidev.nav.go('process-page', 0)">
   back
 </button>
 
----
-routeAlias: process2-hosoku-page
-class: supplement-page
----
-
-# 補足（要件定義）
-
-<button class="supplement-back-button" @click="$slidev.nav.go('process-page', 1)">
-  back
-</button>
-
----
-routeAlias: process3-hosoku-page
-class: supplement-page
----
-
-# 補足（開発）
-
-<button class="supplement-back-button" @click="$slidev.nav.go('process-page', 2)">
-  back
-</button>
-
----
-routeAlias: process4-hosoku-page
-class: supplement-page
----
-
-# 補足（運用）
-
-<button class="supplement-back-button" @click="$slidev.nav.go('process-page', 3)">
-  back
-</button>
-
----
-routeAlias: process5-hosoku-page
-class: supplement-page
----
-
-# 補足　保守の主な作業（利用者、ﾍﾞﾝﾀﾞｰ）（保守）
-
-  <JinanStep kind="subtitle" title="1)障害保守（訂正保守も含む）" />
-  <JinanStep kind="body" title="ｼｽﾃﾑにﾊﾞｸﾞ（不具合）が見つかった際に、ﾌﾟﾛｸﾞﾗﾑを修正して正常な状態に戻します。" />
-
-  <JinanStep kind="subtitle" title="2)適応保守" />
-  <JinanStep kind="body" title="OSのｱｯﾌﾟﾃﾞｰﾄや法改正（消費税率の変更など）に合わせて、ｼｽﾃﾑを書き換えます。" />
-
-  <JinanStep kind="subtitle" title="3)改良保守（完全化保守）" />
-  <JinanStep kind="body" title="「もっと処理を速くしたい」「操作画面を使いやすくしたい」といった要望に応えて機能を強化します。" />
-
-  <JinanStep kind="subtitle" title="4)予防保守" />
-  <JinanStep kind="body" title="将来障害が起きそうな箇所を、トラブルが発生する前にあらかじめ修正します。" />
-
-<button class="supplement-back-button" @click="$slidev.nav.go('process-page', 4)">
-  back
-</button>
 
 

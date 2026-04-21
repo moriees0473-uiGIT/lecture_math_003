@@ -85,7 +85,7 @@ canvasWidth: 1100
 
   <JinanStep kind="subtitle" title="[gray]ア[/gray]　[math]-1[/math]　　[gray]イ[/gray]　[math]1[/math] [gray]　　ウ[/gray]　[math]-1^2[/math]　　[gray]工[/gray]　[math]解なし[/math]\n\n" style="margin-left: 5em;"/>
 
-  <JinanStep v-click kind="body" title="【正解】エ　\n　　注）正解のエは、{虚数|きょすう}:[math]i^2[/math]の選択肢がないため、\n　　　　実数として「解なし」が正解となります。" />
+  <JinanStep v-click kind="body" title="【正解】エ　\n　　[gray]注）[green]{虚数|きょすう}:[math]±i[/math] の選択肢がないため[/green]、実数として\n　　　　「解なし」が正解となります。[/gray]" />
  
 </JinanStepFrame>
 </div>
@@ -107,8 +107,8 @@ canvasWidth: 1100
 
   <JinanStep v-click kind="body" title="[green]Ｂパターン（解が１つ）[/green]\n　[math]x^2 = 0 = ±sqrt(0) = ±sqrt(0^2) 　{∴|ゆえに}X = 0[/math]" style="margin-left: 3em;"/>
 
-<JinanStep v-click kind="body" title="[green]Ｃパターン（解なし）[/green]\n　[math]x^2 = -1 = ±sqrt(-1)[/math]　　 {∴|ゆえに} 解なし\n　 注）数学的には、[green]{虚数|きょすう} [math]i^2 = -1[/math][/green] として表せます。\n　　　 虚数とは、実数ではない「想像上の数」です。" style="margin-left: 3em;"/>
-  
+<JinanStep v-click kind="body" title="[green]Ｃパターン（解なし）[/green]\n　[math]x^2 = -1 = ±sqrt(-1)[/math]　　　　　　{∴|ゆえに} 解なし\n　 [gray]注）数学的には、[green]{虚数|きょすう} [math]i^2 = -1[/math][/green] として表せます。\n　　　 虚数とは、実数ではない[green]「想像上の数」[/green]です。[/gray]" style="margin-left: 3em;"/>
+
 </JinanStepFrame>
 </div>
 

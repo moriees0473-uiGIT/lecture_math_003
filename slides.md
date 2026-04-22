@@ -199,6 +199,8 @@ canvasWidth: 1100
     
   <JinanStep kind="body" title="Q1. [math]x^2 + 3x = 0[/math]" style="margin-left: 3em;"/>
 
+　<JinanStep v-click kind="body" title="【正解】 [math]x(X + 3) = 0 {∴|ゆえに} X = 0, -3[/math]" 　  style="margin-left: 6em;"/>
+
  <!--
 　<JinanStep v-click kind="body" title="【正解】 [math]x(X + 3) = 0 {ゆえに|ゆえに} X = 0, -3[/math]" 　  style="margin-left: 6em;"/>
 

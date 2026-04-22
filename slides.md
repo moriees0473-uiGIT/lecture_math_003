@@ -196,7 +196,10 @@ canvasWidth: 1100
 <JinanStepFrame
   variant="point-bg"
 >
+  <!--
+  --->
   <JinanStep kind="title" title="3. 小テスト" />
+  --->
   <JinanStep kind="subtitle" title="次の[math]x^2 のx[/math] の解を答えなさい。\n" />
 
   <JinanStep kind="body" title="Q1. [math]x^2 + 3x = 0[/math]" style="margin-left: 3em;"/>

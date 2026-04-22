@@ -248,10 +248,10 @@ canvasWidth: 1100
   variant="point-bg"
 >
   <JinanStep kind="body" title="Q8. [math]x(x + 2) = 0[/math]" style="margin-left: 3em;"/>
-  <JinanStep v-click kind="body" title="【正解】 [math] {∴|ゆえに} X = 0, -2[/math]"" style="margin-left: 6em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math] {∴|ゆえに} X = 0, -2[/math]" style="margin-left: 6em;"/>
 
   <JinanStep kind="body" title="Q9. [math](x -3)(x + 1) = 0[/math]" style="margin-left: 3em;"/>
-  <JinanStep v-click kind="body" title="【正解】 [math] {∴|ゆえに} x = 3, -1[/math]"" style="margin-left: 6em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math] {∴|ゆえに} x = 3, -1[/math]" style="margin-left: 6em;"/>
 
   <JinanStep kind="body" title="Q10.因数分解で解く理由は？" style="margin-left: 3em;"/>
   <JinanStep v-click kind="body" title="【正解】 0の法則を使うため\n　　　（掛けて 0 になるなら、どれかひとつは絶対に 0）" style="margin-left: 6em;"/>

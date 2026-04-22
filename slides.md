@@ -197,10 +197,10 @@ canvasWidth: 1100
   variant="point-bg"
 > <JinanStep kind="subtitle" title="次の[math]x^2 のx[/math] の解を答えなさい。\n" />
     
- <!--
   <JinanStep kind="body" title="Q1. [math]x^2 + 3x = 0[/math]" style="margin-left: 3em;"/>
   <JinanStep v-click kind="body" title="【正解】 [math]x(X + 3) = 0 {∴|ゆえに} X = 0, -3[/math]"" style="margin-left: 6em;"/>
 
+ <!--
   <JinanStep kind="body" title="Q2. [math]x^2 - 5x = 0[/math]" style="margin-left: 3em;"/>
   <JinanStep v-click kind="body" title="【正解】 [math]x(X - 5) = 0 {∴|ゆえに} X = 0, 5[/math]"" style="margin-left: 6em;"/>
 

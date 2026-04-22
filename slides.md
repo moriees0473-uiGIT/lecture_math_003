@@ -198,9 +198,10 @@ canvasWidth: 1100
 > <JinanStep kind="subtitle" title="次の[math]x^2 のx[/math] の解を答えなさい。\n" />
     
   <JinanStep kind="body" title="Q1. [math]x^2 + 3x = 0[/math]" style="margin-left: 3em;"/>
-　<JinanStep v-click kind="body" title="【正解】 [math]x(X + 3) = 0 {ゆえに|ゆえに} X = 0, -3[/math]" 　  style="margin-left: 6em;"/>
 
  <!--
+　<JinanStep v-click kind="body" title="【正解】 [math]x(X + 3) = 0 {ゆえに|ゆえに} X = 0, -3[/math]" 　  style="margin-left: 6em;"/>
+
   <JinanStep kind="body" title="Q2. [math]x^2 - 5x = 0[/math]" style="margin-left: 3em;"/>
   <JinanStep v-click kind="body" title="【正解】 [math]x(X - 5) = 0 {∴|ゆえに} X = 0, 5[/math]" style="margin-left: 6em;"/>
 
@@ -222,16 +223,16 @@ canvasWidth: 1100
   variant="point-bg"
 >
   <JinanStep kind="body" title="Q4. [math]x^2 - 9 = 0[/math]" style="margin-left: 3em;"/>
-  <JinanStep v-click kind="body" title="【正解】 [math](x + 3)(X - 3) = 0 {∴|ゆえに} X = ±3[/math]"" style="margin-left: 6em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math](x + 3)(X - 3) = 0 {∴|ゆえに} X = ±3[/math]" style="margin-left: 6em;"/>
 
   <JinanStep kind="body" title="Q5. [math]x^2 - 1 = 0[/math]" style="margin-left: 3em;"/>
-  <JinanStep v-click kind="body" title="【正解】 [math](x + 1)(X - 1) = 0 {∴|ゆえに} x = ±1[/math]"" style="margin-left: 6em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math](x + 1)(X - 1) = 0 {∴|ゆえに} x = ±1[/math]" style="margin-left: 6em;"/>
 
   <JinanStep kind="body" title="Q6. [math]x^2 + 6x = 0[/math]" style="margin-left: 3em;"/>
-  <JinanStep v-click kind="body" title="【正解】 [math] x(X + 6) = 0 {∴|ゆえに} X = 0, -6[/math]"" style="margin-left: 6em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math] x(X + 6) = 0 {∴|ゆえに} X = 0, -6[/math]" style="margin-left: 6em;"/>
 
   <JinanStep kind="body" title="Q7. [math]x^2 - 4x = 0[/math]" style="margin-left: 3em;"/>
-  <JinanStep v-click kind="body" title="【正解】 [math] x(X - 4) = 0 {∴|ゆえに} X = 0, 4[/math]"" style="margin-left: 6em;"/>
+  <JinanStep v-click kind="body" title="【正解】 [math] x(X - 4) = 0 {∴|ゆえに} X = 0, 4[/math]" style="margin-left: 6em;"/>
 
 </JinanStepFrame>
 </div>

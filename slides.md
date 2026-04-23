@@ -159,7 +159,7 @@ canvasWidth: 1100
   <JinanStep kind="body" title="[math]x^2 + (a + b)x +ab = (x + a)(x + b)[/math]\n" style="margin-left: 5em;" />
 
   <JinanStep kind="body" title="③ {平方|へいほう}の{差|さ}\n" />
-  <JinanStep kind="body" title="[math]a^2 - b^2 = (a - b)^2[/math]\n" style="margin-left: 5em;" />
+  <JinanStep kind="body" title="[math]a^2 - b^2 = (a + b)(a - b)[/math]\n" style="margin-left: 5em;" />
 
 </JinanStepFrame>
 </div>
